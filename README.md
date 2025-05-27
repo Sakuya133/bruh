@@ -1,9 +1,9 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/Eu-CByJh)
 |    NRP     |      Name      |
 | :--------: | :------------: |
-| 5025221000 | Student 1 Name |
-| 5025221000 | Student 2 Name |
-| 5025221000 | Student 3 Name |
+| 5025241178 | Christian Mikaxelo |
+| 5025241227 | Safa Maulana Efendi |
+| 5025241218 | Ida Bagus Gde Dimas Sutha Maha |
 
 # Praktikum Modul 3 _(Module 3 Lab Work)_
 
@@ -207,15 +207,20 @@ praktikan2:praktikan2
 
 - **Code:**
 
-  `put your answer here`
+  ![image](https://github.com/user-attachments/assets/6d7c6f45-668f-498b-a872-45afb19d2ac3)
+
 
 - **Explanation:**
 
-  `put your answer here`
+  - `echo -ne "\033[48;2;178;23;140m"` untuk mengubah warna backgorund magenta
+  - `export PROMPT_COMMAND='echo -ne "\033[48;2;178;23;140m"'` warna backgorund tetap
+  - `export PS1='\[\033[1;32m\]\u@\h:\w \$ \[\033[0m\]'` prompt shell berwarna hijau
+
 
 - **Screenshot:**
 
-  `put your answer here`
+  ![image](https://github.com/user-attachments/assets/0af92824-5da9-4038-a0d9-2c03e881b0b7)
+
 
 ### Soal 9
 
