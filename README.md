@@ -93,16 +93,21 @@ praktikan2:praktikan2
 
 - **Code:**
 
-  `put your answer here`
+  `chown root:root /home/root`
+
+  `chmod 700 /home/root`
 
 - **Explanation:**
 
-  `put your answer here`
+  Jalankan perintah `chmod` dan `chown` pada terminal sebelum booting menggunakan QEMU, guna untuk memberi access read/write/execute kepada root (chmod) dan memastikan ownership direktori `/root` hanya kepada root (chown)
 
 - **Screenshot:**
 
-  `put your answer here`
+  ![Image](https://github.com/user-attachments/assets/e2ab902f-6a37-4dc1-873c-0cd6204f3714)
+  
+  ![Image](https://github.com/user-attachments/assets/7f5c1e71-27f9-48e4-8fbf-ef6e5b99c26c)
 
+  ![Image](https://github.com/user-attachments/assets/52a66ac6-8878-46d7-a9f5-4281ed1f83ed)
 ### Soal 5
 
 > Setiap user rencananya akan digunakan oleh satu orang tertentu. **Privasi dan otoritas tiap user** merupakan hal penting. Oleh karena itu, Budiman ingin membuat setiap user hanya bisa mengakses dirinya sendiri dan tidak bisa mengakses user lain. Buatlah sehingga sistem operasi Budiman dalam melakukan hal tersebut!
@@ -113,15 +118,31 @@ praktikan2:praktikan2
 
 - **Code:**
 
-  `put your answer here`
+  `chmod 700 /home/Budiman`
+
+  `chmod 700 /home/guest`
+
+  `chmod 700 /home/praktikan1`
+
+  `chmod 700 /home/praktikan2`
+
+  `chown 1001:100 /home/Budiman`
+
+  `chown 1002:100 /home/guest`
+
+  `chown 1003:100 /home/praktikan1`
+
+  `chown 1004:100 /home/praktikan2`
 
 - **Explanation:**
 
-  `put your answer here`
+  Jalankan perintah `chmod` dan `chown` di terminal sebelum booting di QEMU, guna untuk memberi access read/write/execute kepada user-user (chmod) dan memastikan ownership direktori yang dimiliki setiap user (chown)
 
 - **Screenshot:**
 
-  `put your answer here`
+  ![Image](https://github.com/user-attachments/assets/7409866d-54db-498c-ae8b-d7626049eed1)
+
+  ![Image](https://github.com/user-attachments/assets/38bc067f-5999-4d19-9367-6f8c3ce351f9)
 
 ### Soal 6
 
@@ -132,16 +153,25 @@ praktikan2:praktikan2
 **Answer:**
 
 - **Code:**
+  - Membuat file /etc/motd untuk menyimpan banner
+    
+  ![Image](https://github.com/user-attachments/assets/4aadce1d-697b-4955-8dac-2f75b58f1174)
 
-  `put your answer here`
+  - Membuat file /etc/profile untuk menampilkan banner
+
+  ![Image](https://github.com/user-attachments/assets/260c0bdd-d4af-4146-9d46-32b2ee8d2b67)
+
+  
 
 - **Explanation:**
 
-  `put your answer here`
+  - File `motd` berguna untuk menyimpan banner `Welcome to OS'25`
+  - File `profile` berguna untuk menampilkan banner setelah login dengan perintah `cat`
 
 - **Screenshot:**
 
-  `put your answer here`
+  ![image](https://github.com/user-attachments/assets/bd88af35-e735-4791-8300-a51a55df938b)
+
 
 ### Soal 7
 
@@ -153,15 +183,19 @@ praktikan2:praktikan2
 
 - **Code:**
 
-  `put your answer here`
+  - File `/etc/profile`
+ 
+    ![image](https://github.com/user-attachments/assets/dc3f88ea-2aea-4576-9fb9-a25d55e33ad5)
+
 
 - **Explanation:**
 
-  `put your answer here`
+  Setelah perintah `cat` untuk banner, buat variabel untuk mengambil hasil dari `$(whoami)` yang dimana akan menampilkan user yang sedang login/ yang sedang memberi perintah
 
 - **Screenshot:**
 
-  `put your answer here`
+  ![image](https://github.com/user-attachments/assets/09b1c27d-a5b1-40d2-94af-771a0555646d)
+
 
 ### Soal 8
 
