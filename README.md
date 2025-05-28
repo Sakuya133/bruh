@@ -403,11 +403,35 @@ praktikan2:praktikan2
 
 - **Code:**
 
-  `put your answer here`
+1. ```bash
+   mkdir -p mylinuxiso/boot/grub
+   ```
+
+2. ```bash
+   cp bzImage mylinuxiso/boot
+   cp myramdisk.gz mylinuxiso/boot
+   ```
+
+3. ```cfg
+   set timeout=5
+   set default=0
+
+   menuentry "MyLinux" {
+     linux /boot/bzImage
+     initrd /boot/myramdisk.gz
+   }
+   ```
+
+4. ```bash
+   grub-mkrescue -o mylinux.iso mylinuxiso
+   ```
 
 - **Explanation:**
 
-  `put your answer here`
+1. Membuat struktur direktori ISO
+2. Menyalin file kernel dan root filesystem
+3. Membuat file `grub.cfg` di `mylinuxiso/boot/grub`
+4. Jalankan perintah berikut dari direktori `osboot`
 
 - **Screenshot:**
 
