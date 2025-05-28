@@ -23,16 +23,91 @@ _One sunny morning, Budiman, an Informatics student, was assigned by his lecture
 
 - **Code:**
 
-  `put your answer here`
+1. Update dan Install Software
+```bash
+  sudo apt -y update
+  sudo apt -y install qemu-system build-essential bison flex libelf-dev libssl-dev bc grub-common grub-pc libncurses-dev libssl-dev mtools grub-pc-bin xorriso tmux
+```
+2. Buat Direktori osboot
+```bash
+  mkdir -p osboot
+  cd osboot
+```
+3. Download dan Ekstrak Kernel Linux
+```bash
+  wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.1.1.tar.xz
+  tar -xvf linux-6.1.1.tar.xz
+  cd linux-6.1.1
+```
+4. Setting config kernel
+```bash
+  make tinyconfig
+  make menuconfig
+```
+5. Compile kernel
+```bash
+  make -j$(nproc)
+```
+6. Generate the bzImage File
+```bash
+  cp arch/x86/boot/bzImage ..
+```
 
 - **Explanation:**
+  
+  - Menggunakan VMware Player, dengan  mengaktifkan nested virtualization.
+  - Install Linux Ubuntu 22.04 dengan minimal 4GB memory dan 4 vCPU.
 
-  `put your answer here`
+1. Sebelum mulai kita memastikan sistem yang kita pakai sudah update dan menginstal beberapa tools yang kita perlukan seperti `qemu`, `build-essential`, `bison`, `flex`, dan lainnya
+2. Membuat direktori untuk file os budiman nanti
+3. Selanjutnya kita mendownload kernel Linux versi 6.1.1, dan masuk ke direktori linux-6.1.1 setelah download sudah selesai
+4. Mengkonfigurasi file config untuk os kita dan ini beberapa yang harus di aktifkan 
+   ```
+   64-Bit Kernel
+   General Setup > Configure standard kernel features > Enable support for printk
+   General Setup > Configure standard kernel features > Enable futex support
+   General Setup > Initial RAM filesystem and RAM disk (initramfs/initrd) support
+   General Setup > Control Group Support
+   Enable the block layer > Legacy autoloading support
+   Enable the block layer > Partition type > Advanced Partition Selection
+   Device Drivers > Character devices > Enable TTY
+   Device Drivers > Character devices > Virtio console
+   Device Drivers > Character devices > /dev/mem virtual device support
+   Device Drivers > Network device support > Virtio Network Driver
+   Device Drivers > Serial Ata / Paralel ATA
+   Device Drivers > Block Devices > Virtio block driver
+   Device Drivers > Block Devices > loopback device support
+   Device Drivers > Block Devices > RAM block device support
+   Device Drivers > Virtio drivers
+   Device Drivers > Virtualization Drivers
+   Device Drivers > Generic  Driver Options > Maintain a devtmpfs at filesystems
+   Device Drivers > Generic Driver Options > Automount devtmpfs at /dev
+   Executable file formats > Kernel Support for ELF binaries
+   Executable file formats > Kernel Support scripts starting with #!
+   File Systems > FUSE support
+   File Systems > The extended 3 filesystem
+   File Systems > The extended 4 filesystem
+   File Systems > Second extended fs support
+   File Systems > Virtio Filesystem
+   File Systems > Kernel automounter support
+   File Systems > Pseudo File Systems > /proc file system support
+   File Systems > Pseudo File Systems > sysctl support
+   File Systems > Pseudo File Systems > sysfs file system support
+   Networking Support > Networking options > Unix domain sockets
+   Networking Support > Networking options > TCP/IP Networking
+   ```
+5. Mengcompile Kernel kita dan nanti menghasilkan file `bzImage`
+6. memindahkan file `bzImage` ke direktori `osboot`
 
 - **Screenshot:**
+  ![Gambar1](https://github.com/user-attachments/assets/3f82b45d-43da-4c1d-9537-94d2c4a3c8df)
+  ![Gambar1](https://github.com/user-attachments/assets/c6f43dc4-34f9-43a5-bea1-d1a98bf662a0)
+  ![Gambar1](https://github.com/user-attachments/assets/f0866442-86ed-4843-a3df-cf1497f55891)
+  ![Gambar1](https://github.com/user-attachments/assets/21378659-0524-4048-a496-ff04e5dc0216)
+  ![Gambar1](https://github.com/user-attachments/assets/d80b9611-99c2-4c8a-99f2-7abd9fd91244)
+  ![Gambar1](https://github.com/user-attachments/assets/862f65c2-0ab9-4dcc-ad4e-3ca29558503b)
 
-  `put your answer here`
-
+  
 ### Soal 2
 
 > Setelah seluruh prasyarat siap, Budiman siap untuk membuat sistem operasinya. Dosen meminta untuk sistem operasi Budiman harus memiliki directory **bin, dev, proc, sys, tmp,** dan **sisop**. Lagi-lagi Budiman meminta bantuanmu. Bantulah Ia dalam membuat directory tersebut!
@@ -43,15 +118,41 @@ _One sunny morning, Budiman, an Informatics student, was assigned by his lecture
 
 - **Code:**
 
-  `put your answer here`
+1. Superuser
+ ```bash
+  sudo bash
+ ```
+  2. Buat Direktori untuk Initramfs
+ ```bash
+  mkdir -p myramdisk/{bin,dev,proc,sys,etc,root,home/user1}
+ ```
+  3. Salin File Device ke Direktori dev
+ ```bash
+  cp -a /dev/null myramdisk/dev
+  cp -a /dev/tty* myramdisk/dev
+  cp -a /dev/zero myramdisk/dev
+  cp -a /dev/console myramdisk/dev
+ ```
+  4. Salin BusyBox ke Direktori bin
+ ```bash
+  cp /usr/bin/busybox myramdisk/bin
+  cd myramdisk/bin
+  ./busybox --install .
+ ```
 
 - **Explanation:**
 
-  `put your answer here`
+1. Masuk ke dalam Superuser
+2. Bueat direktori dengan nama myramdisk dan beberapa sub-direktori yang diperlukan oleh sistem dan soal
+3. Menyalin direktori `/dev` berisi perangkat penting seperti `null`, `tty`, `zero`, dan `console` dari sistem host ke dalam direktori `dev` di `myramdisk` yang barusan kita buat.
+4. dari sistem host ke dalam direktori `dev` di `myramdisk`
+
 
 - **Screenshot:**
 
-  `put your answer here`
+  ![Gambar1](https://github.com/user-attachments/assets/6fa7ac08-cbb4-4631-9dcc-3f6231739f0b)
+
+
 
 ### Soal 3
 
@@ -73,15 +174,70 @@ praktikan2:praktikan2
 
 - **Code:**
 
-  `put your answer here`
+1. Buat Password Root
+ ```bash
+  openssl passwd -1 Iniroot
+  openssl passwd -1 PassBudi
+  openssl passwd -1 guest
+  openssl passwd -1 Praktikan1
+  openssl passwd -1 Praktikan2
+ ```
+  2. Buat File passwd di Direktori etc
+ ```
+  root:$1$148xkffB$Qhn5r60aHWJbY0BWP6tfl.:0:0:root:/root:/bin/sh
+  Budiman:$1$57uWxV/P$5oNcLg8Vbpxiw7vEzoiUj0:1001:100:Budiman:/home/Budiman:/bin/sh
+  guest:$1$ElLLSMbB$rTUFjVPqLFeHWeZnv/LwV/:1002:100:guest:/home/guest:/bin/sh
+  praktikan1:$1$qvWfOiIm$6jmT0WmqBRHZvLzkrGn0e/:1003:100:praktikan1:/home/praktikan1:/bin/sh
+  praktikan2:$1$jDaE7PaG$My01qAbUbmSxgPU2CCQKv/:1004:100:praktikan2:/home/praktikan2:/bin/sh
+ ```
+  3. Buat File group di Direktori etc
+ ```bash
+  root:x:0:
+  bin:x:1:root
+  sys:x:2:root
+  tty:x:5:root,Budiman,guest,praktikan1,praktikan2
+  disk:x:6:root
+  wheel:x:10:root,Budiman,guest,praktikan1,praktikan2
+  users:x:100:uBudiman,guest,praktikan1,praktikan2
+ ```
+  4. Buat File init
+ ```bash
+  #!/bin/sh
+  /bin/mount -t proc none /proc
+  /bin/mount -t sysfs none /sys
+
+  while true
+  do
+      /bin/getty -L tty1 115200 vt100
+      sleep 1
+  done
+  ./busybox --install .
+ ```
+ 5. Berikan Izin Eksekusi pada File init
+ ```bash
+  chmod +x init
+ ```
+  5. Kompres dan Buat File initramfs
+ ```bash
+  find . | cpio -oHnewc | gzip > ../myramdisk.gz
+ ```
 
 - **Explanation:**
 
-  `put your answer here`
+1. Gunakan perintah openssl untuk membuat password root yang dienkripsi
+2. Buat file passwd di direktori etc untuk menyimpan informasi tentang akun root dan user yang akan kita buat (misalnya Budiman)
+3. Buat file group di direktori etc yang berisi pengaturan grup untuk user yang baru dibuat
+4. Kembali ke direktori myramdisk, buat file init yang akan dipanggil oleh bootloader saat sistem booting,lalu akan melakukan mounting untuk proc dan sysfs, yang memungkinkan komunikasi antara user space dan kernel. Kemudian, perintah getty akan menunggu input login dari pengguna melalui konsol.
+5. Agar file init bisa dieksekusi dan memberikan izin eksekusi
+6. Setelah menyiapkan semua file yang diperlukan, kita akan mengumpulkan file-file tersebut menggunakan utilitas cpio dan kemudian mengompresnya dengan gzip untuk membuat image initramfs dan menghasilak file myramdisk.gz yang berisi file minimal untuk booting
 
 - **Screenshot:**
 
-  `put your answer here`
+![Gambar1](https://github.com/user-attachments/assets/53f3267c-275f-4f90-b11f-4da33cd1a983)
+![Gambar1](https://github.com/user-attachments/assets/72aaf7c5-570f-4b44-9c94-a58a31ddb2d5)
+![Gambar1](https://github.com/user-attachments/assets/2f6c8381-42b5-4a2d-bfdf-2ee3d0b68480)
+![Gambar1](https://github.com/user-attachments/assets/f30ce74f-a86c-4bf2-9791-5eecbbbd0fe6)
+![Gambar1](https://github.com/user-attachments/assets/459a9f88-b52a-4d8f-90e8-962b6dc3dc88)
 
 ### Soal 4
 
