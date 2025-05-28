@@ -2,8 +2,8 @@
 |    NRP     |      Name      |
 | :--------: | :------------: |
 | 5025241178 | Christian Mikaxelo |
-| 5025241227 | Safa Maulana Efendi |
 | 5025241218 | Ida Bagus Gde Dimas Sutha Maha |
+| 5025241227 | Safa Maulana Efendi |
 
 # Praktikum Modul 3 _(Module 3 Lab Work)_
 
@@ -388,15 +388,36 @@ praktikan2:praktikan2
 
 - **Code:**
 
-  `put your answer here`
+`git clone https://github.com/morisab/budiman-text-editor.git`
+`cd budiman-text-editor`
+`g++ main.cpp -o budiman`
+`cp budiman myramdisk/bin/`
+`./budiman`
+
+
 
 - **Explanation:**
 
-  `put your answer here`
+  Kita buat text editor dengan referensi yang diambil dari repository github
+  `https://github.com/morisab/budiman-text-editor`
+  setelahnya kita copy dan taruh di folder `myramdisk/bin/budiman`, yang dimana directory ini menyimpan file file binary,
+  setelahnya kita masuk ke OS kita dan login ke salah satu user, dan jalankan budiman, tara text editor berhasil dibuat.
+
+  `git clone https://github.com/morisab/budiman-text-editor.git`
+  `cd budiman-text-editor`
+  Penjelasan: kita clone file dari repository referensi, dan pindah ke directory yang sudah kita clone
+  `g++ main.cpp -o budiman`
+  Penjelasan: kita compile file yang sudah kita clone tersebut
+  `cp budiman myramdisk/bin/`
+  Penjelasan: Kita copy file budiman, ke tujuan myramdisk/bin/
+  `./budiman`
+  Penjelasan: kita login ke os yang kita buat, login ke salah satu user, dan ketik command budiman, text editor sudah muncul.
+  
+  
 
 - **Screenshot:**
-
-  `put your answer here`
+  ### Gambar Text Editornya
+ ![Image](https://github.com/user-attachments/assets/f1f5df86-d95f-46be-8815-0ec93b6108be)
 
 ### Soal 10
 
@@ -439,8 +460,12 @@ praktikan2:praktikan2
 4. Jalankan perintah berikut dari direktori `osboot`
 
 - **Screenshot:**
+  ### Gambar osboot
+![Image](https://github.com/user-attachments/assets/8966108c-8c2d-4add-95d2-5ef8079e28a9)
 
-  `put your answer here`
+### Gambar saat ISO dijalankan
+ ![Image](https://github.com/user-attachments/assets/2acbb141-4d8c-4af7-b7b6-c6b21f006239)
+
 
 ---
 
